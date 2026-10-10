@@ -156,7 +156,7 @@ interface CampusMapProps {
 }
 
 export const CampusMap: React.FC<CampusMapProps> = ({
-  apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'AIzaSyCZRA_b4AjT2pZt3Sx9MI73-8WTgSLpifU',
+  apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ''
   heightClass = 'h-[500px] lg:h-[580px]',
   showSidebar = true,
 }) => {
