@@ -227,7 +227,7 @@ export const InitiativesView: React.FC<InitiativesViewProps> = ({ onOpenReportMo
               {onNavigate && (
                 <button
                   onClick={() => onNavigate('campus-map')}
-                  className="px-3 py-1.5 rounded-lg bg-pastel-mint text-on-pastel-mint hover:bg-emerald-100 border border-emerald-200/80 text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
+                  className="px-3 py-1.5 rounded-lg bg-pastel-mint text-on-pastel-mint hover:opacity-90 border border-emerald-200/80 text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
                 >
                   <MapPin className="w-3.5 h-3.5 text-primary" />
                   <span>View on SGU Map</span>

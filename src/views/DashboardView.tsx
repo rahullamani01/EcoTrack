@@ -126,7 +126,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             {onNavigate && (
               <button
                 onClick={() => onNavigate('campus-map')}
-                className="px-3 py-2 rounded-xl border border-emerald-200/80 bg-pastel-mint text-on-pastel-mint hover:bg-emerald-100 transition-colors text-xs font-semibold flex items-center gap-1.5 cursor-pointer shadow-2xs"
+                className="px-3 py-2 rounded-xl border border-emerald-200/80 bg-pastel-mint text-on-pastel-mint hover:opacity-90 transition-colors text-xs font-semibold flex items-center gap-1.5 cursor-pointer shadow-2xs"
               >
                 <MapPin className="w-3.5 h-3.5 text-primary" />
                 <span>View SGU Map</span>

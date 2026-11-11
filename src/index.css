@@ -1,7 +1,11 @@
 @import "tailwindcss";
 
+/* Class-based dark mode (Tailwind v4): toggled by adding `.dark` on <html>. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
+    color-scheme: light;
     --color-surface: #f4f9f5;
     --color-surface-dim: #eaf2ec;
     --color-surface-bright: #ffffff;
@@ -39,43 +43,44 @@
     --color-card-border: #d4ebd9;
   }
 
-  /* No dark colors even if dark class is present: stay light pastel sage/mint */
+  /* Dark theme: deep green-tinted surfaces with a high-contrast mint accent. */
   .dark {
-    --color-surface: #f2f8f4;
-    --color-surface-dim: #e6f2ea;
-    --color-surface-bright: #ffffff;
-    --color-surface-container-lowest: #ffffff;
-    --color-surface-container-low: #edf6f0;
-    --color-surface-container: #e2f1e6;
-    --color-surface-container-high: #d8ecde;
-    --color-surface-container-highest: #cde6d4;
-    --color-surface-variant: #dceddf;
-    --color-background: #f2f8f4;
-    --color-on-background: #143823;
-    --color-on-surface: #143823;
-    --color-on-surface-variant: #355f46;
-    --color-outline: #548766;
-    --color-outline-variant: #c7e1cf;
-    --color-primary: #195b32;
+    color-scheme: dark;
+    --color-surface: #0b1510;
+    --color-surface-dim: #070f0b;
+    --color-surface-bright: #1b2c21;
+    --color-surface-container-lowest: #111f16;
+    --color-surface-container-low: #15251b;
+    --color-surface-container: #1a2d21;
+    --color-surface-container-high: #203627;
+    --color-surface-container-highest: #263f2e;
+    --color-surface-variant: #223a2a;
+    --color-background: #0b1510;
+    --color-on-background: #e4f0e8;
+    --color-on-surface: #e4f0e8;
+    --color-on-surface-variant: #a7c4b1;
+    --color-outline: #7ea88e;
+    --color-outline-variant: #2a4635;
+    --color-primary: #37a066;
     --color-primary-container: #237b45;
     --color-on-primary: #ffffff;
     --color-on-primary-container: #dcfce7;
-    --color-secondary: #2d7348;
-    --color-secondary-container: #e0f4e7;
-    --color-on-secondary-container: #144326;
-    --color-tertiary: #317855;
-    --color-tertiary-container: #dcf2e3;
-    --color-tertiary-fixed: #eaf7ef;
-    --color-tertiary-fixed-dim: #c5e8d0;
-    --color-pastel-mint: #dcfce7;
-    --color-on-pastel-mint: #14532d;
-    --color-pastel-sky: #e0f2fe;
-    --color-on-pastel-sky: #0369a1;
-    --color-pastel-amber: #fef9c3;
-    --color-on-pastel-amber: #854d0e;
-    --color-pastel-rose: #fce7f3;
-    --color-on-pastel-rose: #9d174d;
-    --color-card-border: #cee8d4;
+    --color-secondary: #8fd0a6;
+    --color-secondary-container: #1b3a26;
+    --color-on-secondary-container: #c8eed7;
+    --color-tertiary: #8ed3ae;
+    --color-tertiary-container: #1b3527;
+    --color-tertiary-fixed: #16261c;
+    --color-tertiary-fixed-dim: #1f3528;
+    --color-pastel-mint: #16351f;
+    --color-on-pastel-mint: #a6e7bd;
+    --color-pastel-sky: #12283a;
+    --color-on-pastel-sky: #a5d4f7;
+    --color-pastel-amber: #2e2410;
+    --color-on-pastel-amber: #f3d98d;
+    --color-pastel-rose: #331724;
+    --color-on-pastel-rose: #f2a9c8;
+    --color-card-border: #24402e;
   }
 
   body {

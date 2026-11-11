@@ -211,7 +211,7 @@ export const WasteSortingView: React.FC = () => {
                   />
                   <button
                     onClick={handleReset}
-                    className="absolute top-3 right-3 p-1.5 rounded-full bg-white/90 hover:bg-white text-on-surface shadow-xs border border-card-border transition-colors cursor-pointer"
+                    className="absolute top-3 right-3 p-1.5 rounded-full bg-surface-container-lowest/90 hover:bg-surface-container text-on-surface shadow-xs border border-card-border transition-colors cursor-pointer"
                     title="Remove image"
                   >
                     <X className="w-4 h-4" />

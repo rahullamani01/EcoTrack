@@ -3,6 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Apply the saved theme before first paint to avoid a light flash.
+      (function () {
+        try {
+          var stored = localStorage.getItem('ecotrack_theme');
+          var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.classList.add('dark');
+          document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+        } catch (e) {
+          /* ignore storage access errors */
+        }
+      })();
+    </script>
     <title>SGU EcoTrack - Sanjay Ghodawat University Campus Sustainability</title>
     <meta name="description" content="Sanjay Ghodawat University (SGU Kolhapur) digital sustainability intelligence platform. Real-time campus telemetry, eco-challenges, green energy monitoring, and student action." />
     <meta property="og:title" content="SGU EcoTrack - Sanjay Ghodawat University Campus Sustainability" />

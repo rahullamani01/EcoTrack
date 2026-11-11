@@ -123,7 +123,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-transparent pointer-events-none"></div>
 
                 {/* Overlaid Restrained Impact Badge */}
-                <div className="absolute bottom-5 left-5 right-5 sm:right-auto bg-white/95 backdrop-blur-md rounded-xl px-4 py-3 shadow-md flex items-center gap-3 max-w-sm border border-emerald-200/60">
+                <div className="absolute bottom-5 left-5 right-5 sm:right-auto bg-surface-container-lowest/95 backdrop-blur-md rounded-xl px-4 py-3 shadow-md flex items-center gap-3 max-w-sm border border-emerald-200/60">
                   <span className="text-base select-none">🌿</span>
                   <div className="flex flex-col">
                     <span className="text-xs font-semibold text-primary">Sanjay Ghodawat University</span>
@@ -747,7 +747,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <div className="flex items-center gap-3">
               <button
                 onClick={() => onNavigate('campus-map')}
-                className="inline-flex items-center gap-2 bg-pastel-mint text-on-pastel-mint hover:bg-emerald-100 border border-emerald-200/80 px-5 py-2.5 rounded-xl text-xs font-semibold transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 bg-pastel-mint text-on-pastel-mint hover:opacity-90 border border-emerald-200/80 px-5 py-2.5 rounded-xl text-xs font-semibold transition-colors cursor-pointer"
               >
                 <span>Full Map Experience</span>
                 <ArrowRight className="w-3.5 h-3.5" />

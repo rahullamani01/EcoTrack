@@ -324,7 +324,7 @@ export const TreeMonitoringView: React.FC = () => {
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-3 left-3">
-                    <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-white/95 backdrop-blur-xs text-primary shadow-xs border border-card-border">
+                    <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-surface-container-lowest/95 backdrop-blur-xs text-primary shadow-xs border border-card-border">
                       {tree.tagNumber}
                     </span>
                   </div>
