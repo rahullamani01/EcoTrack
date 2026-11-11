@@ -10,6 +10,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
+    "sync:trees": "tsx scripts/sync-campus-trees.ts",
     "lint": "tsc --noEmit"
   },
   "dependencies": {

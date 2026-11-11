@@ -4,6 +4,7 @@ import { useSync } from '../context/SyncContext';
 import { useAuth } from '../context/AuthContext';
 import { CampusEvent } from '../types';
 import { CampusMap } from '../components/CampusMap';
+import { assetUrl } from '../utils/assetUrl';
 import {
   ArrowRight,
   CheckCircle2,
@@ -117,7 +118,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 <img
                   alt="Sanjay Ghodawat University (SGU) Green Campus, Kolhapur"
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                  src="/images/sgu-campus.jpg"
+                  src={assetUrl('/images/sgu-campus.jpg')}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-transparent pointer-events-none"></div>
 

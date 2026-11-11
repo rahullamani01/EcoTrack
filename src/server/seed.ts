@@ -9,6 +9,7 @@ import {
   SustainabilityMetricRecord,
 } from './models.js';
 import { hashPassword, generateSecureToken } from './crypto.js';
+import { campusTrees } from '../data/campusTrees.js';
 
 export async function seedInitialDatabase(): Promise<void> {
   // 1. Seed Authorized Student Roster (Labeled as demonstration student roster)
@@ -124,101 +125,9 @@ export async function seedInitialDatabase(): Promise<void> {
     await userAccountsCollection.insert(adminUser);
   }
 
-  // 3. Seed Campus Trees (Distinguishing verified inventory from sample educational records)
-  const initialTrees: CampusTreeRecord[] = [
-    {
-      id: 'tree-001',
-      tagNumber: 'SGU-TR-0101',
-      speciesCommon: 'Neem Tree',
-      speciesBotanical: 'Azadirachta indica',
-      localNameMarathi: 'कडुनिंब (Kadunimb)',
-      locationZone: 'Central Lawn near Knowledge Resource Centre',
-      coordinates: { lat: 16.7456, lng: 74.3754 },
-      plantedDate: '2019-07-15',
-      status: 'Healthy',
-      isVerified: true,
-      canopyDiameterMeters: 6.2,
-      heightMeters: 8.5,
-      lastInspectionDate: '2025-09-20',
-      maintainedBy: 'SGU Horticulture Department',
-      notes: 'Natural air purifier and shade canopy. Drip irrigation functional.',
-      imageUrl: 'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=600&q=80',
-    },
-    {
-      id: 'tree-002',
-      tagNumber: 'SGU-TR-0102',
-      speciesCommon: 'Peepal Tree',
-      speciesBotanical: 'Ficus religiosa',
-      localNameMarathi: 'पिंपळ (Pimpal)',
-      locationZone: 'Sahyadri Residence Garden Quad',
-      coordinates: { lat: 16.7471, lng: 74.3765 },
-      plantedDate: '2018-08-10',
-      status: 'Healthy',
-      isVerified: true,
-      canopyDiameterMeters: 9.0,
-      heightMeters: 11.2,
-      lastInspectionDate: '2025-09-18',
-      maintainedBy: 'SGU Horticulture Department',
-      notes: 'Mature tree providing extensive biodiversity habitat for local avian species.',
-      imageUrl: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=600&q=80',
-    },
-    {
-      id: 'tree-003',
-      tagNumber: 'SGU-TR-0103',
-      speciesCommon: 'Gulmohar (Flamboyant)',
-      speciesBotanical: 'Delonix regia',
-      localNameMarathi: 'गुलमोहर (Gulmohar)',
-      locationZone: 'School of Technology North Avenue',
-      coordinates: { lat: 16.7448, lng: 74.3742 },
-      plantedDate: '2021-06-22',
-      status: 'Needs Inspection',
-      isVerified: true,
-      canopyDiameterMeters: 4.8,
-      heightMeters: 6.1,
-      lastInspectionDate: '2025-10-02',
-      maintainedBy: 'Student Green Volunteer Brigade',
-      notes: 'Monitored for seasonal bloom health. Requires pruning along walkway boundary.',
-      imageUrl: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=600&q=80',
-    },
-    {
-      id: 'tree-004',
-      tagNumber: 'SGU-TR-0104',
-      speciesCommon: 'Banyan Tree',
-      speciesBotanical: 'Ficus benghalensis',
-      localNameMarathi: 'वड (Vad)',
-      locationZone: 'CREAM Solar Field Boundary Promenade',
-      coordinates: { lat: 16.7460, lng: 74.3780 },
-      plantedDate: '2017-09-05',
-      status: 'Healthy',
-      isVerified: true,
-      canopyDiameterMeters: 12.4,
-      heightMeters: 12.8,
-      lastInspectionDate: '2025-08-30',
-      maintainedBy: 'SGU Campus Maintenance Cell',
-      notes: 'Aerial root propagation monitored. Natural barrier protecting solar arrays from high highway dust.',
-      imageUrl: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=600&q=80',
-    },
-    {
-      id: 'tree-005',
-      tagNumber: 'SGU-TR-0105',
-      speciesCommon: 'Indian Gooseberry (Amla)',
-      speciesBotanical: 'Phyllanthus emblica',
-      localNameMarathi: 'आवळा (Amla)',
-      locationZone: 'Medicinal Plant Arboretum (School of Pharmacy)',
-      coordinates: { lat: 16.7439, lng: 74.3759 },
-      plantedDate: '2022-07-14',
-      status: 'Maintenance Required',
-      isVerified: false, // Sample demo record for research trial
-      isSampleDemonstration: true,
-      canopyDiameterMeters: 2.5,
-      heightMeters: 3.2,
-      lastInspectionDate: '2025-10-01',
-      maintainedBy: 'Pharmacy Herbal Research Club',
-      notes: '[Sample Educational Record] Soil moisture sensor indicates dry topsoil; organic mulching and nutrient replenishment required.',
-      imageUrl: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=600&q=80',
-    },
-  ];
-  await campusTreesCollection.seed(initialTrees);
+  // 3. Seed Campus Trees (Verified field inventory photographed on the SGU campus)
+  await campusTreesCollection.seed(campusTrees);
+
 
   // 4. Seed Verified Sustainability Metric Records
   const initialMetrics: SustainabilityMetricRecord[] = [

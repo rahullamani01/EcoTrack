@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { CampusTreeRecord } from '../types';
+import { campusTrees } from '../data/campusTrees';
+import { assetUrl } from '../utils/assetUrl';
 import {
   Trees,
   Search,
@@ -18,6 +20,9 @@ import {
   X,
   ExternalLink,
 } from 'lucide-react';
+
+const DEFAULT_TREE_IMAGE =
+  'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=600&q=80';
 
 export const TreeMonitoringView: React.FC = () => {
   const { user, token } = useAuth();
@@ -51,10 +56,16 @@ export const TreeMonitoringView: React.FC = () => {
       const res = await fetch('/api/trees');
       if (res.ok) {
         const data = await res.json();
-        setTrees(data.trees || []);
+        const records: CampusTreeRecord[] = data.trees || [];
+        // Fall back to the bundled inventory if the API returns an empty list
+        // (for example on the static GitHub Pages demo).
+        setTrees(records.length > 0 ? records : campusTrees);
+      } else {
+        setTrees(campusTrees);
       }
     } catch (err) {
-      console.error('Failed to fetch trees:', err);
+      console.warn('Tree API unavailable, using bundled campus inventory.', err);
+      setTrees(campusTrees);
     } finally {
       setLoading(false);
     }
@@ -308,7 +319,7 @@ export const TreeMonitoringView: React.FC = () => {
                 {/* Photo Header */}
                 <div className="relative aspect-[16/9] w-full bg-surface-container overflow-hidden">
                   <img
-                    src={tree.imageUrl || 'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=600&q=80'}
+                    src={assetUrl(tree.imageUrl, DEFAULT_TREE_IMAGE)}
                     alt={tree.speciesCommon}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   />
@@ -438,7 +449,7 @@ export const TreeMonitoringView: React.FC = () => {
 
             <div className="aspect-[16/9] w-full rounded-xl overflow-hidden mb-4 border border-card-border">
               <img
-                src={selectedTree.imageUrl || 'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=600&q=80'}
+                src={assetUrl(selectedTree.imageUrl, DEFAULT_TREE_IMAGE)}
                 alt={selectedTree.speciesCommon}
                 className="w-full h-full object-cover"
               />

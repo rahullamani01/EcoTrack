@@ -50,6 +50,14 @@ export async function initDatabase(): Promise<{ type: 'mongodb' | 'file'; error?
   return { type: 'file' };
 }
 
+export async function closeDatabase(): Promise<void> {
+  if (mongoClient) {
+    await mongoClient.close();
+    mongoClient = null;
+    mongoDb = null;
+  }
+}
+
 async function ensureMongoIndexes(db: Db): Promise<void> {
   try {
     // Unique PRN index on student_roster

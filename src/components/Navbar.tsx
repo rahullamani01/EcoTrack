@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
+import { assetUrl } from '../utils/assetUrl';
 import { Moon, Sun, Menu, X, User as UserIcon, LogOut, Shield } from 'lucide-react';
 
 export type ActiveScreen =
@@ -57,7 +58,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentScreen, onNavigate, onOpe
           >
             <div className="w-10 h-10 rounded-xl bg-white p-0.5 flex items-center justify-center shadow-xs border border-card-border group-hover:scale-105 transition-transform overflow-hidden">
               <img
-                src="/images/sgu-logo.png"
+                src={assetUrl('/images/sgu-logo.png')}
                 alt="SGU Logo"
                 className="w-full h-full object-contain"
                 onError={(e) => {
