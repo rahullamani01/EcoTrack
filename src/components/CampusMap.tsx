@@ -193,6 +193,11 @@ export const CampusMap: React.FC<CampusMapProps> = ({
     });
   };
 
+  // Keyless fallback: OpenStreetMap embed centered on the selected campus site.
+  const mapCenter = selectedLocation ?? { lat: 16.7454, lng: 74.3752 };
+  const osmBbox = `${mapCenter.lng - 0.008},${mapCenter.lat - 0.005},${mapCenter.lng + 0.008},${mapCenter.lat + 0.005}`;
+  const osmSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(osmBbox)}&layer=mapnik&marker=${encodeURIComponent(`${mapCenter.lat},${mapCenter.lng}`)}`;
+
   const getCategoryIcon = (category: CampusLocation['category']) => {
     switch (category) {
       case 'energy':
@@ -281,7 +286,8 @@ export const CampusMap: React.FC<CampusMapProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[460px]">
         {/* Interactive Google Map Section */}
         <div className={`relative ${showSidebar ? 'lg:col-span-8' : 'lg:col-span-12'} ${heightClass}`}>
-          <APIProvider apiKey={apiKey}>
+          {apiKey ? (
+            <APIProvider apiKey={apiKey}>
             <Map
               defaultCenter={{ lat: 16.7454, lng: 74.3752 }}
               defaultZoom={16}
@@ -354,6 +360,22 @@ export const CampusMap: React.FC<CampusMapProps> = ({
               )}
             </Map>
           </APIProvider>
+          ) : (
+            <div className="relative w-full h-full bg-surface-container">
+              <iframe
+                key={`${mapCenter.lat},${mapCenter.lng}`}
+                title="SGU campus map (OpenStreetMap)"
+                src={osmSrc}
+                className="w-full h-full border-0"
+                loading="lazy"
+              />
+              <div className="absolute top-3 left-3 z-10 px-3 py-1.5 rounded-lg bg-surface-container-lowest/95 backdrop-blur-sm border border-card-border shadow-xs text-[11px] font-medium text-on-surface-variant">
+                OpenStreetMap preview · add{' '}
+                <code className="font-mono text-[10px]">VITE_GOOGLE_MAPS_API_KEY</code> for the
+                interactive Google Map
+              </div>
+            </div>
+          )}
 
           {/* Map Overlay Badge */}
           <div className="absolute bottom-4 left-4 z-10 bg-surface-container-lowest/95 backdrop-blur-md px-3.5 py-2 rounded-xl border border-card-border shadow-xs text-xs">

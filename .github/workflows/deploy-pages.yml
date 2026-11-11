@@ -35,6 +35,9 @@ jobs:
         env:
           # Serves the app from https://<user>.github.io/<repo>/
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
+          # Optional: add this secret in repo settings to enable Google Maps.
+          # Leave unset to use the keyless OpenStreetMap preview.
+          VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
 
       - name: Add SPA fallback page
         run: cp dist/index.html dist/404.html
